@@ -24,3 +24,4 @@ BuildPackage/Package/*
 *.suo
 *.user
 *.sln.docstates
+*.vs
