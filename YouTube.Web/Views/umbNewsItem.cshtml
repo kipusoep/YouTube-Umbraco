@@ -30,13 +30,13 @@
                             @CurrentPage.BodyText
                             
                             
-                            @Model.Content.GetProperty("video").Value<br/>
-                            @Model.Content.GetProperty("video").XPathValue<br/>
-                            @Model.Content.GetProperty("video").DataValue<br/>
+                            @Model.Content.GetProperty("playlistPicker").Value<br/>
+                            @*@Model.Content.GetProperty("video").XPathValue<br/>*@
+                            @Model.Content.GetProperty("playlistPicker").DataValue<br/>
                             
 
 
-                            @{
+                            @*@{
                                 foreach (var dynamicVideo in CurrentPage.video)
                                 {
                                     <div>@Html.Raw(dynamicVideo.Player.EmbedHtml)</div>
@@ -63,7 +63,7 @@
                                     @typedVideo.Statistics.ViewCount<br />
                                     @typedVideo.Snippet.PublishedAt.Value.ToShortDateString()
                                 }
-                            }
+                            }*@
                         </section>                           
                     </article>
                     <!-- /Content -->
