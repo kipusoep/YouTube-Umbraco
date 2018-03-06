@@ -45,6 +45,31 @@ namespace YouTube.Controllers
             }
         }
 
+        //http://localhost:50533/umbraco/backoffice/YouTube/YouTubeApi/PlaylistsForChannel
+        [HttpPost]
+        public SearchListResponse PlaylistsForChannel(ApiModel model)
+        {
+            //Convert string orderby to the enum that we expect
+            try
+            {
+                var order = (SearchResource.ListRequest.OrderEnum)Enum.Parse(typeof(SearchResource.ListRequest.OrderEnum), model.OrderBy, true);
+
+                //Go & get the videos
+                var channelVideos = YouTubeHelper.GetPlaylistsForChannel(model.PageToken, model.ChannelId, model.SearchQuery, order);
+
+                //Return the response from YouTube API
+                return channelVideos;
+
+            }
+            catch (ArgumentException)
+            {
+                var message = new HttpResponseMessage(HttpStatusCode.BadRequest);
+                message.Content = new StringContent("Order by cannot be converted to the enum");
+
+                throw new HttpResponseException(message);
+            }
+        }
+
         //http://localhost:50533/umbraco/backoffice/YouTube/YouTubeApi/ChannelFromId?channelId=1234
         [HttpGet]
         public ChannelListResponse ChannelFromId(string channelId)

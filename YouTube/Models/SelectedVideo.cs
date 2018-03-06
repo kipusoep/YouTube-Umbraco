@@ -12,5 +12,8 @@ namespace YouTube.Models
 
         [DataMember(Name = "title")]
         public string Title { get; set; }
+
+        [DataMember(Name = "type")]
+        public SearchType Type { get; set; }
     }
 }
